@@ -286,7 +286,7 @@ render_dropdown();
 
 function render_dropdown2() {
   let x = document.getElementById("award_money");
-  for (let i = 0; i < 2001; i = i + 1000) {
+  for (let i = 1000; i < 2000; i = i + 1000) {
     let option = document.createElement("option");
 
     option.text = i;
