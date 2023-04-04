@@ -566,7 +566,7 @@ let stu_id = document.getElementById("student_id").value;
   var time = unix_to_time(new Date().getTime());
   var date = unix_to_date(new Date().getTime());
 
-if(award_money.length>0 & stu_name.length>2 & stu_id.length>5){
+if(award_money.length>0 & stu_name.length>2 & stu_id.length==6){
   update_data(winner, time, date, award_money,row_sel,stu_name,stu_id);
 }
   
