@@ -154,7 +154,6 @@ async function listMajors(spreadsheet_Id, range_to_get) {
 function render_dropdown() {
   let x = document.getElementById("aa_dropdown");
 
-  //console.log(set_academy_names);
   for (let i = 0; i < arr_academy_names.length; i++) {
     let option = document.createElement("option");
 
@@ -170,8 +169,8 @@ function on_click_pass_check() {
     console.log(selected_academy);
     console.log("checked");
     window.localStorage.setItem("sel_aca", selected_academy);
-    //window.location.href = "https://spin-wheel.github.io/demo_spin.html";
-    window.location.href = "http://127.0.0.1:5500/demo_spin.html";
+    window.location.href = "https://spin-wheel.github.io/demo_spin.html";
+    //window.location.href = "http://127.0.0.1:5500/demo_spin.html";
 
   }
 }

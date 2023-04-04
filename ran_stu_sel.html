@@ -36,12 +36,50 @@
       <div id="final-value">
         <p>Click On The Spin Button To Start</p>
       </div>
+      <br>
+      <div class="next_page">
+        <label>Student Detail</label>
+        <input
+          id="student_name"
+          placeholder="Student Name"
+          name="fname"
+        />
+        <input
+        type="number"
+          id="student_id"
+          placeholder="Student ID"
+          name="stu_id"
+        />
+        <br><br>
+        <select name="numbers" id="award_money">
+          <option value="" disabled selected>Award Money</option>
+        </select>
+        
+        <button
+          type="submit"
+          onclick="post_on_firebase()"
+        >
+          Submit
+        </button>
+        <button
+          type="submit"
+          onclick="end()"
+        >
+        End
+        </button>
+      </div>
     </div>
+    
+  </div>
     <!-- Chart JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <!-- Chart JS Plugin for displaying text over chart -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
 
+    <!--Calling firebase APIs-->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
 
     <!-- Script -->
     <script src="ran_stu_sel.js"></script>

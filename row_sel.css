@@ -56,8 +56,7 @@
 }
 
 .next_page{
-    position: absolute;
-    left: 40%;
+    text-align: center;
 }
   .container {
     position: relative;
@@ -95,6 +94,8 @@
     top: 42%;
     right: -10%;
   }
+
+  
   #final-value {
     font-size: 1.5em;
     text-align: center;

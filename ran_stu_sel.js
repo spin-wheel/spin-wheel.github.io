@@ -491,3 +491,84 @@ const valueGenerator = (angleValue) => {
     }
   }
 };
+
+function render_dropdown() {
+  let x = document.getElementById("award_money");
+  for (let i = 0; i < 2001; i = i + 1000) {
+    let option = document.createElement("option");
+
+    option.text = i;
+    x.add(option);
+  }
+}
+render_dropdown();
+
+const firebaseApp = firebase.initializeApp({
+  apiKey: "AIzaSyCofNKXGLmDBwxCSzyfjPQQf0sUtcaMy_0",
+  authDomain: "spin-wheelz.firebaseapp.com",
+  projectId: "spin-wheelz",
+  storageBucket: "spin-wheelz.appspot.com",
+  messagingSenderId: "118466041762",
+  appId: "1:118466041762:web:9717138830c4112e6f44fb",
+});
+const db = firebaseApp.firestore();
+
+const update_data = (data, time, date, award_money, row,stu_name,stu_id) => {
+  db.collection(data[0])
+    .add({
+      Time: time,
+      Date: date,
+      Academy_Name: data[0],
+      Teacher_Name: data[1],
+      Teacher_code: data[2],
+      Award_Money: award_money,
+      Selected_row:row,
+      Student_Name: stu_name,
+      Student_id: stu_id,
+    })
+    .then((docRef) => {
+      console.log("Written");
+      finalValue.innerHTML = `<p>Submitted</p>`;
+      stat = 1;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+function unix_to_time(timestamp) {
+  var date = new Date(timestamp);
+  return date.toLocaleTimeString("default");
+}
+
+function unix_to_date(timestamp) {
+  var date = new Date(timestamp);
+  return date.toLocaleDateString("default");
+}
+let stat = 0;
+function end() {
+  if (stat == 1) {
+    window.location.href = "https://spin-wheel.github.io/thank.html";
+    //window.location.href = "http://127.0.0.1:5500/thank.html";
+  }
+}
+
+function post_on_firebase() {
+  let stu_name = document.getElementById("student_name").value;
+let stu_id = document.getElementById("student_id").value;
+  let award_money = document.getElementById("award_money").value;
+  let row_sel;
+  row_sel = parseInt(window.localStorage.getItem("sel_row"));
+  let winner;
+  winner =JSON.parse(window.localStorage.getItem("winner"));
+
+
+  var time = unix_to_time(new Date().getTime());
+  var date = unix_to_date(new Date().getTime());
+
+if(award_money.length>0 & stu_name.length>2 & stu_id.length>5){
+  update_data(winner, time, date, award_money,row_sel,stu_name,stu_id);
+}
+  
+}
+

@@ -1,5 +1,6 @@
 /////spin wheel/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//0 for nothing, 1 if submitted result
+let stat = 0;
 const wheel = document.getElementById("wheel");
 const spinBtn = document.getElementById("spin-btn");
 const finalValue = document.getElementById("final-value");
@@ -180,23 +181,44 @@ spinBtn.addEventListener("click", () => {
     }
   }, 10);
 });
-
+let winner = [];
 const valueGenerator = (angleValue) => {
   for (let i of rotation_value_selector) {
     //if the angleValue is between min and max then display it
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
       finalValue.innerHTML = `<p>Winner: ${table_data[i.value - 1][1]}</p>`;
       console.log(table_data[i.value - 1]);
-      var time = unix_to_time(new Date().getTime());
-      var date = unix_to_date(new Date().getTime());
-      update_data(table_data[i.value - 1],time,date);
-      //appendValues("1zNxmasKf1U220lQqGGEd2BKkwo3pY55OH66pWkmF98I","Sheet1!A1","RAW","dadasaf");
+      winner = table_data[i.value - 1];
+      console.log(winner);
+      window.localStorage.setItem("winner", JSON.stringify(winner));
+   
       spinBtn.disabled = false;
       break;
     }
   }
 };
 
+function submit() {
+  let award_money = document.getElementById("award_money").value;
+  //window.localStorage.setItem("award_money", award_money);
+let row_sel;
+  row_sel = parseInt(window.localStorage.getItem("sel_row"));
+
+  var time = unix_to_time(new Date().getTime());
+  var date = unix_to_date(new Date().getTime());
+if(award_money.length>0){
+  update_data(winner, time, date, award_money,row_sel);
+}
+  
+}
+function end() {
+  
+if(stat==1){
+  window.location.href = "https://spin-wheel.github.io/thank.html";
+  //window.location.href = "http://127.0.0.1:5500/thank.html";
+}
+  
+}
 const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyCofNKXGLmDBwxCSzyfjPQQf0sUtcaMy_0",
   authDomain: "spin-wheelz.firebaseapp.com",
@@ -207,49 +229,52 @@ const firebaseApp = firebase.initializeApp({
 });
 const db = firebaseApp.firestore();
 
-
-  const update_data= (data,time,date)=>{
-    db.collection(data[0])
+const update_data = (data, time, date, award_money,row) => {
+  db.collection(data[0])
     .add({
-      time: time,
-      date: date,
-      aa_name:data[0],
-      t_name:data[1],
-      t_code:data[2],
+      Time: time,
+      Date: date,
+      Academy_Name: data[0],
+      Teacher_Name: data[1],
+      Teacher_code: data[2],
+      Award_Money: award_money,
+      Selected_row:row,
+      Student_Name: "",
+      Student_id: "",
     })
     .then((docRef) => {
       console.log("Written");
+      finalValue.innerHTML = `<p>Submitted</p>`;
+      stat=1;
     })
-    .catch((error)=>{
+    .catch((error) => {
       console.log(error);
-    })
-  }
+    });
+};
 
-function unix_to_time(timestamp){
-
+function unix_to_time(timestamp) {
   var date = new Date(timestamp);
-  return (date.toLocaleTimeString("default"));
+  return date.toLocaleTimeString("default");
 }
 
-function unix_to_date(timestamp){
-
+function unix_to_date(timestamp) {
   var date = new Date(timestamp);
-  return (date.toLocaleDateString("default"));
+  return date.toLocaleDateString("default");
 }
 
-function next_page(){
+function next_page() {
   let num_of_stu = document.getElementById("numbers").value;
   window.localStorage.setItem("num_of_stu", num_of_stu);
-  
-//  window.location.href = "https://spin-wheel.github.io/ran_stu_sel.html";
-  window.location.href = "http://127.0.0.1:5500/ran_stu_sel.html";
-  
+
+  if(num_of_stu!=0){
+    window.location.href = "https://spin-wheel.github.io/ran_stu_sel.html";
+  //window.location.href = "http://127.0.0.1:5500/ran_stu_sel.html";
+  }
+
 }
 
 function render_dropdown() {
   let x = document.getElementById("numbers");
-
-
   for (let i = 0; i < 23; i++) {
     let option = document.createElement("option");
 
@@ -259,3 +284,13 @@ function render_dropdown() {
 }
 render_dropdown();
 
+function render_dropdown2() {
+  let x = document.getElementById("award_money");
+  for (let i = 0; i < 2001; i = i + 1000) {
+    let option = document.createElement("option");
+
+    option.text = i;
+    x.add(option);
+  }
+}
+render_dropdown2();

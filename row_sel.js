@@ -116,6 +116,7 @@ const valueGenerator = (angleValue) => {
     //if the angleValue is between min and max then display it
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
       finalValue.innerHTML = `<p>Selected Row: ${label_var[i.value-1]}</p>`;
+      window.localStorage.setItem("sel_row", label_var[i.value-1]);
       spinBtn.disabled = false;
       break;
     }
@@ -123,7 +124,7 @@ const valueGenerator = (angleValue) => {
 };
 
 function next_page(){
-//    window.location.href = "https://spin-wheel.github.io/home.html";
-    window.location.href = "http://127.0.0.1:5500/home.html";
+   window.location.href = "https://spin-wheel.github.io/home.html";
+//    window.location.href = "http://127.0.0.1:5500/home.html";
     
 }

@@ -56,8 +56,7 @@
 }
 
 .next_page{
-    position: absolute;
-    left: 40%;
+   text-align: center;
 }
   .container {
     position: relative;
