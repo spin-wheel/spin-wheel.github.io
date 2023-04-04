@@ -123,5 +123,7 @@ const valueGenerator = (angleValue) => {
 };
 
 function next_page(){
-    window.location.href = "https://spin-wheel.github.io/home.html";
+//    window.location.href = "https://spin-wheel.github.io/home.html";
+    window.location.href = "http://127.0.0.1:5500/home.html";
+    
 }

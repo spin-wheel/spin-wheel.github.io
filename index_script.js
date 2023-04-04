@@ -170,7 +170,8 @@ function on_click_pass_check() {
     console.log(selected_academy);
     console.log("checked");
     window.localStorage.setItem("sel_aca", selected_academy);
-    window.location.href = "https://spin-wheel.github.io/demo_spin.html";
+    //window.location.href = "https://spin-wheel.github.io/demo_spin.html";
+    window.location.href = "http://127.0.0.1:5500/demo_spin.html";
 
   }
 }

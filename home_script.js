@@ -240,7 +240,10 @@ function unix_to_date(timestamp){
 function next_page(){
   let num_of_stu = document.getElementById("numbers").value;
   window.localStorage.setItem("num_of_stu", num_of_stu);
-  window.location.href = "https://spin-wheel.github.io/ran_stu_sel.html";
+  
+//  window.location.href = "https://spin-wheel.github.io/ran_stu_sel.html";
+  window.location.href = "http://127.0.0.1:5500/ran_stu_sel.html";
+  
 }
 
 function render_dropdown() {
