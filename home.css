@@ -16,7 +16,8 @@
     right: 0;
     height: 150px;
     background-color: rgb(241, 241, 2);
-}
+    box-shadow: 0 4em 5em rgba(27, 8, 53, 0.2);
+  }
 
 #logo {
     position: absolute;

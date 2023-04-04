@@ -189,7 +189,6 @@ const valueGenerator = (angleValue) => {
       finalValue.innerHTML = `<p>Winner: ${table_data[i.value - 1][1]}</p>`;
       console.log(table_data[i.value - 1]);
       winner = table_data[i.value - 1];
-      console.log(winner);
       window.localStorage.setItem("winner", JSON.stringify(winner));
    
       spinBtn.disabled = false;
@@ -200,25 +199,18 @@ const valueGenerator = (angleValue) => {
 
 function submit() {
   let award_money = document.getElementById("award_money").value;
-  //window.localStorage.setItem("award_money", award_money);
+  
 let row_sel;
   row_sel = parseInt(window.localStorage.getItem("sel_row"));
 
   var time = unix_to_time(new Date().getTime());
   var date = unix_to_date(new Date().getTime());
-if(award_money.length>0){
+if(award_money.length>0 & stat==0){
   update_data(winner, time, date, award_money,row_sel);
 }
   
 }
-function end() {
-  
-if(stat==1){
-  window.location.href = "https://spin-wheel.github.io/thank.html";
-  //window.location.href = "http://127.0.0.1:5500/thank.html";
-}
-  
-}
+
 const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyCofNKXGLmDBwxCSzyfjPQQf0sUtcaMy_0",
   authDomain: "spin-wheelz.firebaseapp.com",
@@ -246,6 +238,8 @@ const update_data = (data, time, date, award_money,row) => {
       console.log("Written");
       finalValue.innerHTML = `<p>Submitted</p>`;
       stat=1;
+      window.location.href = "https://spin-wheel.github.io/thank.html";
+      //window.location.href = "http://127.0.0.1:5500/thank.html";
     })
     .catch((error) => {
       console.log(error);

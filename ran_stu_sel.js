@@ -494,7 +494,7 @@ const valueGenerator = (angleValue) => {
 
 function render_dropdown() {
   let x = document.getElementById("award_money");
-  for (let i = 0; i < 2001; i = i + 1000) {
+  for (let i = 0; i < 2001; i = i + 2000) {
     let option = document.createElement("option");
 
     option.text = i;
@@ -513,7 +513,7 @@ const firebaseApp = firebase.initializeApp({
 });
 const db = firebaseApp.firestore();
 
-const update_data = (data, time, date, award_money, row,stu_name,stu_id) => {
+const update_data = (data, time, date, award_money, row, stu_name, stu_id) => {
   db.collection(data[0])
     .add({
       Time: time,
@@ -522,7 +522,7 @@ const update_data = (data, time, date, award_money, row,stu_name,stu_id) => {
       Teacher_Name: data[1],
       Teacher_code: data[2],
       Award_Money: award_money,
-      Selected_row:row,
+      Selected_row: row,
       Student_Name: stu_name,
       Student_id: stu_id,
     })
@@ -530,6 +530,8 @@ const update_data = (data, time, date, award_money, row,stu_name,stu_id) => {
       console.log("Written");
       finalValue.innerHTML = `<p>Submitted</p>`;
       stat = 1;
+      window.location.href = "https://spin-wheel.github.io/thank.html";
+      //window.location.href = "http://127.0.0.1:5500/thank.html";
     })
     .catch((error) => {
       console.log(error);
@@ -546,29 +548,25 @@ function unix_to_date(timestamp) {
   return date.toLocaleDateString("default");
 }
 let stat = 0;
-function end() {
-  if (stat == 1) {
-    window.location.href = "https://spin-wheel.github.io/thank.html";
-    //window.location.href = "http://127.0.0.1:5500/thank.html";
-  }
-}
 
 function post_on_firebase() {
   let stu_name = document.getElementById("student_name").value;
-let stu_id = document.getElementById("student_id").value;
+  let stu_id = document.getElementById("student_id").value;
   let award_money = document.getElementById("award_money").value;
   let row_sel;
   row_sel = parseInt(window.localStorage.getItem("sel_row"));
   let winner;
-  winner =JSON.parse(window.localStorage.getItem("winner"));
-
+  winner = JSON.parse(window.localStorage.getItem("winner"));
 
   var time = unix_to_time(new Date().getTime());
   var date = unix_to_date(new Date().getTime());
 
-if(award_money.length>0 & stu_name.length>2 & stu_id.length==6){
-  update_data(winner, time, date, award_money,row_sel,stu_name,stu_id);
+  if (
+    (award_money.length > 0) &
+    (stu_name.length > 2) &
+    (stu_id.length == 6) &
+    (stat == 0)
+  ) {
+    update_data(winner, time, date, award_money, row_sel, stu_name, stu_id);
+  }
 }
-  
-}
-
