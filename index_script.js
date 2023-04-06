@@ -165,13 +165,13 @@ function render_dropdown() {
 function on_click_pass_check() {
   let input_pass = document.getElementById("password").value;
   let selected_academy = document.getElementById("aa_dropdown").value;
+  window.sessionStorage.setItem("pass", input_pass);
   if ((input_pass == keys[0].pass) & (selected_academy.length > 2)) {
     console.log(selected_academy);
     console.log("checked");
     window.localStorage.setItem("sel_aca", selected_academy);
     window.location.href = "https://spin-wheel.github.io/demo_spin.html";
     //window.location.href = "http://127.0.0.1:5500/demo_spin.html";
-
   }
 }
 function timer() {

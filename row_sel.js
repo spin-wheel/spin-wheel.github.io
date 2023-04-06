@@ -1,3 +1,10 @@
+let passw = parseInt(window.sessionStorage.getItem("pass"));
+
+if (passw != 1234) {
+  window.location.href = "https://spin-wheel.github.io/";
+  //window.location.href = "http://127.0.0.1:5500/";
+}
+
 /////spin wheel/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const wheel = document.getElementById("wheel");
 const spinBtn = document.getElementById("spin-btn");
@@ -18,7 +25,7 @@ const rotationValues = [
   { minDegree: 343, maxDegree: 360, value: 3 },
 ];
 //Size of each piece
-const data = [1, 1, 1, 1, 1, 1,1,1,1,1];
+const data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 //background color for each piece
 var pieColors = [
   "#8b35bc",
@@ -31,10 +38,9 @@ var pieColors = [
 
 ////spin wheel//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 ////render chart //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let myChart;
-let label_var = ["1","2","3","4","5", "6","7","8","9","10"];
+let label_var = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
 function render_chart() {
   myChart = new Chart(wheel, {
@@ -115,16 +121,15 @@ const valueGenerator = (angleValue) => {
   for (let i of rotationValues) {
     //if the angleValue is between min and max then display it
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
-      finalValue.innerHTML = `<p>Selected Row: ${label_var[i.value-1]}</p>`;
-      window.localStorage.setItem("sel_row", label_var[i.value-1]);
+      finalValue.innerHTML = `<p>Selected Row: ${label_var[i.value - 1]}</p>`;
+      window.localStorage.setItem("sel_row", label_var[i.value - 1]);
       spinBtn.disabled = false;
       break;
     }
   }
 };
 
-function next_page(){
+function next_page() {
   window.location.href = "https://spin-wheel.github.io/home.html";
-//   window.location.href = "http://127.0.0.1:5500/home.html";
-    
+  //window.location.href = "http://127.0.0.1:5500/home.html";
 }

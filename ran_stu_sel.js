@@ -1,3 +1,10 @@
+let passw = parseInt(window.sessionStorage.getItem("pass"));
+
+if (passw != 1234) {
+  window.location.href = "https://spin-wheel.github.io/";
+  //window.location.href = "http://127.0.0.1:5500/";
+}
+
 /////spin wheel/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const wheel = document.getElementById("wheel");

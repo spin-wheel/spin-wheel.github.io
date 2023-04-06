@@ -1,3 +1,10 @@
+let passw = parseInt(window.sessionStorage.getItem("pass"));
+
+if (passw != 1234) {
+  window.location.href = "https://spin-wheel.github.io/";
+  //window.location.href = "http://127.0.0.1:5500/";
+}
+
 /////spin wheel/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const wheel = document.getElementById("wheel");
 const spinBtn = document.getElementById("spin-btn");
@@ -27,10 +34,9 @@ var pieColors = [
 
 ////spin wheel//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 ////render chart //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let myChart;
-let label_var = ["Apple","Mango","Banana","Litchi", "Papaya","Pineapple"];
+let label_var = ["Apple", "Mango", "Banana", "Litchi", "Papaya", "Pineapple"];
 
 function render_chart() {
   myChart = new Chart(wheel, {
@@ -111,15 +117,14 @@ const valueGenerator = (angleValue) => {
   for (let i of rotationValues) {
     //if the angleValue is between min and max then display it
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
-      finalValue.innerHTML = `<p>Fruit: ${label_var[i.value-1]}</p>`;
+      finalValue.innerHTML = `<p>Fruit: ${label_var[i.value - 1]}</p>`;
       spinBtn.disabled = false;
       break;
     }
   }
 };
 
-function next_page(){
-    window.location.href = "https://spin-wheel.github.io/row_sel.html";
-    //window.location.href = "http://127.0.0.1:5500/row_sel.html";
-    
+function next_page() {
+  window.location.href = "https://spin-wheel.github.io/row_sel.html";
+  //window.location.href = "http://127.0.0.1:5500/row_sel.html";
 }

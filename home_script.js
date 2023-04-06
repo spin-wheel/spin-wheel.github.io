@@ -1,3 +1,10 @@
+let passw = parseInt(window.sessionStorage.getItem("pass"));
+
+if (passw != 1234) {
+  window.location.href = "https://spin-wheel.github.io/";
+  //window.location.href = "http://127.0.0.1:5500/";
+}
+
 /////spin wheel/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //0 for nothing, 1 if submitted result
 let stat = 0;
@@ -190,7 +197,7 @@ const valueGenerator = (angleValue) => {
       console.log(table_data[i.value - 1]);
       winner = table_data[i.value - 1];
       window.localStorage.setItem("winner", JSON.stringify(winner));
-   
+
       spinBtn.disabled = false;
       break;
     }
@@ -199,16 +206,15 @@ const valueGenerator = (angleValue) => {
 
 function submit() {
   let award_money = document.getElementById("award_money").value;
-  
-let row_sel;
+
+  let row_sel;
   row_sel = parseInt(window.localStorage.getItem("sel_row"));
 
   var time = unix_to_time(new Date().getTime());
   var date = unix_to_date(new Date().getTime());
-if(award_money.length>0 & stat==0){
-  update_data(winner, time, date, award_money,row_sel);
-}
-  
+  if ((award_money.length > 0) & (stat == 0)) {
+    update_data(winner, time, date, award_money, row_sel);
+  }
 }
 
 const firebaseApp = firebase.initializeApp({
@@ -221,7 +227,7 @@ const firebaseApp = firebase.initializeApp({
 });
 const db = firebaseApp.firestore();
 
-const update_data = (data, time, date, award_money,row) => {
+const update_data = (data, time, date, award_money, row) => {
   db.collection(data[0])
     .add({
       Time: time,
@@ -230,14 +236,14 @@ const update_data = (data, time, date, award_money,row) => {
       Teacher_Name: data[1],
       Teacher_code: data[2],
       Award_Money: award_money,
-      Selected_row:row,
+      Selected_row: row,
       Student_Name: "",
       Student_id: "",
     })
     .then((docRef) => {
       console.log("Written");
       finalValue.innerHTML = `<p>Submitted</p>`;
-      stat=1;
+      stat = 1;
       window.location.href = "https://spin-wheel.github.io/thank.html";
       //window.location.href = "http://127.0.0.1:5500/thank.html";
     })
@@ -260,11 +266,10 @@ function next_page() {
   let num_of_stu = document.getElementById("numbers").value;
   window.localStorage.setItem("num_of_stu", num_of_stu);
 
-  if(num_of_stu!=0 & stat==0){
+  if ((num_of_stu != 0) & (stat == 0)) {
     window.location.href = "https://spin-wheel.github.io/ran_stu_sel.html";
-  //window.location.href = "http://127.0.0.1:5500/ran_stu_sel.html";
+    //window.location.href = "http://127.0.0.1:5500/ran_stu_sel.html";
   }
-
 }
 
 function render_dropdown() {
