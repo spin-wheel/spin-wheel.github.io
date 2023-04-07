@@ -53,6 +53,9 @@ body {
 .next_page {
   text-align: center;
 }
+#numbers{
+  width: 20px;
+}
 .submit_teacher {
   text-align: center;
 }
