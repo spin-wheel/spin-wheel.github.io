@@ -105,14 +105,14 @@ function render_table() {
     cell1.innerHTML = table_data[i][1];
     cell2.innerHTML = table_data[i][2];
   }
-  var row = x.insertRow(i + 1);
+  var row = x.insertRow(table_data.length );
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
 
     cell1.innerHTML = "<b>------------<b>";
     cell2.innerHTML = "<b>------------<b>";
 
-    var row = x.insertRow(i + 1);
+    var row = x.insertRow(table_data.length + 1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
 
