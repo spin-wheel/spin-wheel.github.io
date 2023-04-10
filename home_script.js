@@ -14,6 +14,16 @@ const finalValue = document.getElementById("final-value");
 //Object that stores values of minimum and maximum angle for a value
 const rotationValues = [{ minDegree: 0, maxDegree: 360, value: 1 }];
 
+const rotationValues5 = [ 
+   { minDegree: 0, maxDegree: 18, value: 2 }, 
+   { minDegree: 19, maxDegree: 90, value: 1 }, 
+   { minDegree: 91, maxDegree: 162, value: 5 }, 
+   { minDegree: 163, maxDegree: 234, value: 4 }, 
+   { minDegree: 235, maxDegree: 305, value: 3 }, 
+   { minDegree: 306, maxDegree: 360, value: 2 }, 
+ ];
+
+
 const rotationValues6 = [
   { minDegree: 0, maxDegree: 30, value: 2 },
   { minDegree: 31, maxDegree: 90, value: 1 },
@@ -150,7 +160,11 @@ if (table_data.length == 2) {
   rotation_value_selector = rotationValues3;
 } else if (table_data.length == 4) {
   rotation_value_selector = rotationValues4;
-} else {
+}else if (table_data.length == 5) {
+  rotation_value_selector = rotationValues5;
+}
+
+ else {
   rotation_value_selector = rotationValues;
 }
 //display value based on the randomAngle
