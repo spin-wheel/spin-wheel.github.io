@@ -121,7 +121,7 @@ const read_keys = () => {
         // DownloadJSON2CSV(keys);
         //console.log(i);
         simple = simple.concat(temp);
-        console.log(simple);
+        //console.log(simple);
       })
       .catch((error) => {
         console.log(error);
@@ -155,6 +155,7 @@ function DownloadJSON2CSV(objArray) {
     line.slice(0, line.Length - 1);
 
     str += line + "\r\n";
+    console.log(str);
   }
   window.open("data:text/csv;charset=utf-8," + escape(str));
 }
