@@ -450,13 +450,15 @@ if (num_stu == 2) {
   rotation_value_selector = rotationValues;
 }
 //display value based on the randomAngle
-
+var audio = new Audio('sound.mp3');
+var train= new Audio('train.mp3');
 //Spinner count
 let count = 0;
 //100 rotations for animation and last rotation for result
 let resultValue = 101;
 //Start spinning
 spinBtn.addEventListener("click", () => {
+  audio.play();
   spinBtn.disabled = true;
   //Empty final value
   finalValue.innerHTML = `<p>Good Luck!</p>`;
@@ -492,8 +494,11 @@ const valueGenerator = (angleValue) => {
       finalValue.innerHTML = `<p>Selected Student Number: ${
         label_var[i.value - 1]
       }</p>`;
-
+      audio.pause();
+      audio.currentTime=0;
+      train.play();
       spinBtn.disabled = false;
+      
       break;
     }
   }

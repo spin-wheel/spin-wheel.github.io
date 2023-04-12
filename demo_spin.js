@@ -79,15 +79,22 @@ function render_chart() {
 render_chart();
 ////render chart //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+var audio = new Audio('sound.mp3');
+var train= new Audio('train.mp3');
 //Spinner count
 let count = 0;
 //100 rotations for animation and last rotation for result
 let resultValue = 101;
 //Start spinning
 spinBtn.addEventListener("click", () => {
+  audio.play();
   spinBtn.disabled = true;
   //Empty final value
+ 
+  
   finalValue.innerHTML = `<p>Good Luck!</p>`;
+
+
   //Generate random degrees to stop at
   let randomDegree = Math.floor(Math.random() * 360);
   //Interval for rotation animation
@@ -111,6 +118,7 @@ spinBtn.addEventListener("click", () => {
       resultValue = 101;
     }
   }, 10);
+  
 });
 
 const valueGenerator = (angleValue) => {
@@ -118,7 +126,13 @@ const valueGenerator = (angleValue) => {
     //if the angleValue is between min and max then display it
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
       finalValue.innerHTML = `<p>Fruit: ${label_var[i.value - 1]}</p>`;
+      audio.pause();
+      audio.currentTime=0;
+      train.play();
       spinBtn.disabled = false;
+      
+      
+      
       break;
     }
   }

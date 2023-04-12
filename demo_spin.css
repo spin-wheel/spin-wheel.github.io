@@ -10,7 +10,8 @@ body {
   background: linear-gradient(135deg, #c3a3f1, #6414e9);
 }
 #top_bar {
-  position: absolute;
+  z-index: 5;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;

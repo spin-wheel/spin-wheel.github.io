@@ -83,12 +83,16 @@ function render_chart() {
 render_chart();
 ////render chart //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+var audio = new Audio('sound.mp3');
+var train= new Audio('train.mp3');
+
 //Spinner count
 let count = 0;
 //100 rotations for animation and last rotation for result
 let resultValue = 101;
 //Start spinning
 spinBtn.addEventListener("click", () => {
+  audio.play();
   spinBtn.disabled = true;
   //Empty final value
   finalValue.innerHTML = `<p>Good Luck!</p>`;
@@ -117,13 +121,18 @@ spinBtn.addEventListener("click", () => {
   }, 10);
 });
 
+
 const valueGenerator = (angleValue) => {
   for (let i of rotationValues) {
     //if the angleValue is between min and max then display it
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
       finalValue.innerHTML = `<p>Selected Row: ${label_var[i.value - 1]}</p>`;
       window.localStorage.setItem("sel_row", label_var[i.value - 1]);
+      audio.pause();
+      audio.currentTime=0;
+      train.play();
       spinBtn.disabled = false;
+      
       break;
     }
   }
