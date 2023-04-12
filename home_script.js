@@ -237,7 +237,7 @@ const valueGenerator = (angleValue) => {
       
       setTimeout(function(){
         confetti.start();
-      },1000);
+      },500);
       train.play();
       
       setTimeout(function(){
