@@ -138,7 +138,7 @@ setTimeout(function () {
 function DownloadJSON2CSV(objArray) {
   var array = typeof objArray != "object" ? JSON.parse(objArray) : objArray;
 
-  var str = "";
+  var str = ("Time" , "Date","Academy","Teacher_Name","Teacher_code","Row_Selected","Student_Name","Student_id","Award_Money")
 
   for (var i = 0; i < array.length; i++) {
     var line = "";
